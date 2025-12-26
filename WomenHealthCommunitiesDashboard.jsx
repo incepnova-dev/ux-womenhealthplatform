@@ -194,10 +194,248 @@ const formatMembersLabel = (num) => {
 
   return (
     <div className="page-shell">
+      <style>{`
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          background: #f5f5f5;
+        }
+        
+        .page-shell {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          max-width: 100vw;
+          overflow-x: hidden;
+        }
+        
+        .top-bar {
+          background: white;
+          border-bottom: 1px solid #e5e7eb;
+          padding: 16px 0;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+        
+        .top-bar-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+        
+        .brand-block {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        
+        .brand-logo {
+          font-size: 32px;
+        }
+        
+        .brand-text {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .brand-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: #E91E63;
+        }
+        
+        .brand-subtitle {
+          font-size: 12px;
+          color: #666;
+        }
+        
+        .main {
+          flex: 1;
+          max-width: 1400px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 32px 20px;
+        }
+        
+        .content-wrap {
+          width: 100%;
+        }
+        
+        .stats-grid {
+          display: flex;
+          gap: 16px;
+          margin-bottom: 32px;
+        }
+        
+        .stat-card {
+          background: white;
+          border-radius: 12px;
+          padding: 20px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .deck-card {
+          background: white;
+          border-radius: 12px;
+          padding: 20px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          transition: all 0.2s;
+        }
+        
+        .deck-card:hover {
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          transform: translateY(-2px);
+        }
+        
+        .deck-title {
+          font-size: 18px;
+          font-weight: 700;
+          margin: 0;
+          color: #1f2937;
+        }
+        
+        .hero-gradient {
+          background: linear-gradient(135deg, #E91E63, #FF4081);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        
+        .deck-subtitle {
+          color: #6b7280;
+          font-size: 14px;
+          line-height: 1.5;
+          margin: 12px 0;
+        }
+        
+        .btn {
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          border: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          transition: all 0.2s;
+          text-decoration: none;
+        }
+        
+        .btn.primary {
+          background: #E91E63;
+          color: white;
+        }
+        
+        .btn.primary:hover {
+          background: #C2185B;
+        }
+        
+        .btn.secondary {
+          background: white;
+          border: 1px solid #E91E63;
+          color: #E91E63;
+        }
+        
+        .btn.secondary:hover {
+          background: #fef2f7;
+        }
+        
+        .mode-toggle-button {
+          padding: 8px 16px;
+          border: 1px solid #e5e7eb;
+          background: white;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        
+        .mode-toggle-button:hover {
+          border-color: #E91E63;
+          background: #fef2f7;
+        }
+        
+        .mode-toggle-button.active {
+          background: #E91E63;
+          color: white;
+          border: none;
+        }
+        
+        input, select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          font-size: 14px;
+        }
+        
+        input:focus, select:focus {
+          outline: none;
+          border-color: #E91E63;
+        }
+        
+        .footer {
+          background: white;
+          border-top: 1px solid #e5e7eb;
+          padding: 24px 0;
+          margin-top: auto;
+        }
+        
+        .footer-inner {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        
+        .footer-brand {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 13px;
+          color: #666;
+        }
+        
+        .footer-dot {
+          width: 8px;
+          height: 8px;
+          background: #E91E63;
+          border-radius: 50%;
+        }
+        
+        .footer-links {
+          display: flex;
+          gap: 16px;
+          font-size: 13px;
+          flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+          color: #666;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+          color: #E91E63;
+        }
+      `}</style>
+      
       <header className="top-bar">
         <div className="top-bar-inner">
           <div className="brand-block">
-          <div className="brand-logo">🌸</div>
+            <div className="brand-logo">🌸</div>
             <div className="brand-text">
               <span className="brand-title">Nari Swasthya Samuday Samooh</span>
               <span className="brand-subtitle">Connect & Support Network</span>
@@ -216,14 +454,14 @@ const formatMembersLabel = (num) => {
   color: 'white',
   boxShadow: '0 20px 40px rgba(233, 30, 99, 0.2)',
   marginBottom: '32px',
-  display: 'flex',               /* Added Flex */
-  justifyContent: 'space-between', /* Pushes content to edges */
-  alignItems: 'center'           /* Centers icon vertically */
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center'
 }}>
   <div style={{ flex: 1 }}>
     <div className="hero-badge-row">
-      <div className="hero-chip" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)' }}>
-        <span className="dot" style={{ backgroundColor: '#fff' }}></span> 
+      <div className="hero-chip" style={{ background: 'rgba(255,255,255,0.2)', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', padding: '6px 12px', borderRadius: '20px', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}>
+        <span className="dot" style={{ backgroundColor: '#fff', width: '6px', height: '6px', borderRadius: '50%' }}></span> 
         {filteredCommunities.length} Active Communities
       </div>
     </div>
@@ -325,7 +563,6 @@ const formatMembersLabel = (num) => {
       >
         <Globe size={12} /> FILTER BY PLATFORM
       </p>
-      {/* Replace the platform button section around Line 275 */}
           <div className="mode-toggle-buttons" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             <button
               onClick={() => setFilters(prev => ({ ...prev, platform: 'all' }))}
@@ -383,8 +620,8 @@ const formatMembersLabel = (num) => {
     display: 'flex',
     alignItems: 'center',
     gap: '4px',
-    transform: 'translateY(2px)', /* Moves the label and icon down by 2px */
-    marginTop: '2px'           /* Maintains spacing from the buttons below */
+    transform: 'translateY(2px)',
+    marginTop: '2px'
   }}
 >
   <ArrowUpDown size={12} /> SORT BY
@@ -572,26 +809,37 @@ const formatMembersLabel = (num) => {
     </div>
 
           {/* Communities Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gap: '20px', 
+            marginTop: '24px',
+            maxWidth: '100%'
+          }}>
             {filteredCommunities.map(comm => {
              const membersLabel = formatMembersLabel(comm.number_members);
               const platformClass = `platform-${comm.platform.toLowerCase().replace('/', '-').replace(' ', '-')}`;
               
               return (
-                <div key={comm.id} className="deck-card">
-                  <div className="deck-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px' }}>
-                    <h3 className="deck-title hero-gradient" style={{ flex: 1 }}>{comm.community_name}</h3>
+                <div key={comm.id} className="deck-card" style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column',
+                  height: '100%',
+                  overflow: 'hidden'
+                }}>
+                  <div className="deck-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px', flexWrap: 'wrap' }}>
+                    <h3 className="deck-title hero-gradient" style={{ flex: '1 1 auto', minWidth: '200px', wordBreak: 'break-word' }}>{comm.community_name}</h3>
                     
-                    <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap', flex: '0 0 auto' }}>
                   <span style={{ 
-                      background: '#26A69A', /* Success Green / Teal shade matching Members theme */
+                      background: '#26A69A',
                       color: '#ffffff', 
                       padding: '4px 12px', 
                       borderRadius: '6px', 
                       fontSize: '11px', 
                       fontWeight: '700',
                       textTransform: 'uppercase',
-                      boxShadow: '0 2px 4px rgba(38, 166, 154, 0.2)', /* Subtle green shadow */
+                      boxShadow: '0 2px 4px rgba(38, 166, 154, 0.2)',
                       display: 'inline-flex',
                       alignItems: 'center'
                     }}>
@@ -600,7 +848,7 @@ const formatMembersLabel = (num) => {
 
                       {comm.engagement_score && (
                       <span style={{ 
-                            background: '#4A5568', /* Muted Dark Blue/Gray */
+                            background: '#4A5568',
                             color: '#ffffff', 
                             padding: '4px 10px', 
                             borderRadius: '6px', 
@@ -619,7 +867,7 @@ const formatMembersLabel = (num) => {
 
               {/* The Category Tag - Blue Shade */}
             <span className="category-tag" style={{ 
-              background: '#1976D2', /* Professional Blue matching Platforms */
+              background: '#1976D2',
               color: '#ffffff', 
               padding: '4px 10px', 
               borderRadius: '6px', 
@@ -628,9 +876,9 @@ const formatMembersLabel = (num) => {
               textTransform: 'uppercase',
               boxShadow: '0 2px 4px rgba(25, 118, 210, 0.2)',
               letterSpacing: '0.5px',
-              display: 'inline-flex',   /* Added for alignment */
-              alignItems: 'center',      /* Added for alignment */
-              gap: '6px'                 /* Space between icon and text */
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
             }}>
               {getCategoryIcon(comm.category)}
                 {comm.category}
@@ -638,7 +886,17 @@ const formatMembersLabel = (num) => {
             </div>
           
 
-           <p className="deck-subtitle" style={{ color: '#111827', fontSize: '0.9rem', marginTop: '12px', lineHeight: '1.5' }}>
+           <p className="deck-subtitle" style={{ 
+             color: '#111827', 
+             fontSize: '0.9rem', 
+             marginTop: '12px', 
+             lineHeight: '1.5',
+             wordBreak: 'break-word',
+             overflow: 'hidden',
+             display: '-webkit-box',
+             WebkitLineClamp: 3,
+             WebkitBoxOrient: 'vertical'
+           }}>
                     {comm.content || comm.title}
                   </p>
 
@@ -647,7 +905,7 @@ const formatMembersLabel = (num) => {
 
                     <span style={{ 
                          background: '#FFD54F',
-                          color: '#000000', /* Changed to Black for better readability on yellow */
+                          color: '#000000',
                           padding: '6px 12px', 
                           borderRadius: '6px', 
                           fontSize: '11px', 
