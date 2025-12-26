@@ -488,8 +488,8 @@ const formatMembersLabel = (num) => {
           className="filter-row"
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 100px 3fr',
-            gap: '12px',
+            gridTemplateColumns: '1fr 60px 3fr',
+            gap: '10px',
             width: '100%',
             alignItems: 'flex-start',
           }}
