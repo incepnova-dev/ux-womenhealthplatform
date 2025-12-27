@@ -292,7 +292,14 @@ const formatMembersLabel = (num) => {
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           transform: translateY(-2px);
         }
-        
+
+        /* NEW RULE: Add shadow and clarity to text on hover */
+        .deck-card:hover .deck-subtitle {
+          text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.15);
+          color: #000000 !important; /* Slightly darkens text for better focus */
+          transition: all 0.3s ease;
+        }
+                
         .deck-title {
           font-size: 18px;
           font-weight: 700;
@@ -886,18 +893,20 @@ const formatMembersLabel = (num) => {
             </div>
           
 
-           <p className="deck-subtitle" style={{ 
-             color: '#111827', 
-             fontSize: '0.9rem', 
-             marginTop: '12px', 
-             lineHeight: '1.5',
-             wordBreak: 'break-word',
-             overflow: 'hidden',
-             display: '-webkit-box',
-             WebkitLineClamp: 3,
-             WebkitBoxOrient: 'vertical'
-           }}>
-                    {comm.content || comm.title}
+            <p className="deck-subtitle" style={{ 
+              color: '#111827', 
+              fontSize: '0.9rem', 
+              marginTop: '12px', 
+              lineHeight: '1.5',
+              wordBreak: 'break-word',
+              overflow: 'hidden',
+              display: '-webkit-box',
+              WebkitLineClamp: 3,
+              WebkitBoxOrient: 'vertical',
+              transition: 'all 0.3s ease' // Added for smooth shadow appearance
+            }}>
+              
+              {comm.content || comm.title}
                   </p>
 
 
